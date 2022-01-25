@@ -1,11 +1,12 @@
 package br.com.boasaude.msassociados.domain.model
 
 data class HealthPlan(
-    val id: Long,
+    var id: Long? = null,
     val type: HealthPlanType,
-    val cnpj : String,
+    var cnpj: String? = null,
     val classification: HealthPlanClassification,
-    val associateId : Long
+    val dentalPlan: Boolean,
+    var associateId: Long? = null
 )
 
 enum class HealthPlanType {
