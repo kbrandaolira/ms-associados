@@ -6,8 +6,10 @@ import br.com.boasaude.msassociados.domain.model.HealthPlanType.EMPRESARIAL
 import br.com.boasaude.msassociados.domain.repository.AssociateRepository
 import br.com.boasaude.msassociados.domain.repository.HealthPlanRepository
 import br.com.boasaude.msassociados.domain.usecase.RegisterAssociateInHealthPlanResponse.*
+import org.springframework.stereotype.Service
 import javax.transaction.Transactional
 
+@Service
 @Transactional
 class RegisterAssociateInHealthPlanUseCase(
     private val associateRepository: AssociateRepository,

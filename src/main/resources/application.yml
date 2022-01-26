@@ -1,0 +1,34 @@
+server:
+  port: 8090
+
+spring:
+  application.name: ms-associados
+  devtools:
+    restart:
+      enabled: true
+    livereload:
+      enabled: false
+  datasource-report:
+    hikari:
+      connectionTestQuery: SELECT 1
+      minIdle: 1
+      maxPoolSize: 10
+      idleTimeout: 60000
+      poolName: pool
+      schema: associados
+    driverClassName: org.postgresql.Driver
+    jdbcUrl: jdbc:postgresql://localhost:5435/postgres
+    username: postgres
+    password: 123
+
+management:
+  endpoints.web.exposure.include: '*'
+  endpoint:
+    metrics.enabled: true
+    prometheus.enabled: true
+    health:
+      enabled: true
+      show-details: never
+  metrics:
+    tags.application: ${spring.application.name}
+    export.prometheus.enabled: true

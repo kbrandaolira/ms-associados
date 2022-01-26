@@ -1,0 +1,53 @@
+version: '3.6'
+services:
+  db-postgres-boasaude:
+    image: postgres:11.10-alpine
+    container_name: db-postgres-boasaude
+    restart: on-failure
+    expose:
+      - 5432
+    command:
+      - "postgres"
+      - "-c"
+      - "datestyle=SQL,DMY"
+    environment:
+      - TZ=America/Sao_Paulo
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=123
+      - POSTGRES_DB=postgres
+    ports:
+      - "5435:5432"
+    volumes:
+      - ./create_sql:/docker-entrypoint-initdb.d:rw
+
+  prometheus-boasaude:
+    image: prom/prometheus
+    container_name: prometheus-boasaude
+    expose:
+      - 9191
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - 9192:9191
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--log.level=debug'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--storage.tsdb.retention=200h'
+      - '--web.enable-lifecycle'
+      - '--web.listen-address=0.0.0.0:9191'
+
+  grafana-boasaude:
+    user: 'root'
+    image: grafana/grafana:latest
+    container_name: grafana-boasaude
+    expose:
+      - 3000
+    volumes:
+      - ./grafana/data:/var/lib/grafana
+    ports:
+      - 3001:3000
+    depends_on:
+      - prometheus-boasaude

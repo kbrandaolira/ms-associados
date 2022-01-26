@@ -1,0 +1,10 @@
+global:
+  scrape_interval:     15s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
+
+# A scrape configuration containing exactly one endpoint to scrape:
+scrape_configs:
+  - job_name: 'ms-associados'
+    scrape_interval: 5s # Override the global default and scrape targets from this job every 5 seconds.
+    metrics_path: /actuator/prometheus
+    static_configs:
+      - targets: ['localhost:8090']
