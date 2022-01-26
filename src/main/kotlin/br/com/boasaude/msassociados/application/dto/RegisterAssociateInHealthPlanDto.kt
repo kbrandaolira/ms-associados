@@ -5,6 +5,7 @@ import br.com.boasaude.msassociados.domain.model.HealthPlan
 import br.com.boasaude.msassociados.domain.model.HealthPlanClassification
 import br.com.boasaude.msassociados.domain.model.HealthPlanType
 import java.time.LocalDate
+import java.time.LocalDateTime
 
 data class RegisterAssociateInHealthPlanDto(
     val name: String,
@@ -18,7 +19,7 @@ data class RegisterAssociateInHealthPlanDto(
     val userId: Long
 ) {
     fun toAssociate(): Associate {
-        return Associate(name = this.name, birthDate = this.birthDate, cpf = this.cpf, email = this.email)
+        return Associate(name = this.name, birthDate = this.birthDate, cpf = this.cpf, email = this.email, createdAt = LocalDateTime.now(), createdBy = userId)
     }
 
     fun toHealthPlan(): HealthPlan {

@@ -1,5 +1,6 @@
 package br.com.boasaude.msassociados.infrastructure.entity
 
+import br.com.boasaude.msassociados.domain.model.Associate
 import org.springframework.data.jpa.repository.Temporal
 import java.time.LocalDate
 import java.time.LocalDateTime
@@ -17,9 +18,21 @@ class AssociateEntity (
     var cpf : String,
     var email: String,
     @Temporal(TemporalType.TIMESTAMP)
-    var createdAt: LocalDateTime = LocalDateTime.now(),
+    var createdAt: LocalDateTime,
     var createdBy: Long,
     @Temporal(TemporalType.TIMESTAMP)
-    var updatedAt: LocalDateTime,
-    var updatedBy: Long,
-)
+    var updatedAt: LocalDateTime? = null,
+    var updatedBy: Long? = null,
+){
+    companion object {
+        fun fromAssociate(associate: Associate) = AssociateEntity(
+           id = associate.id,
+            name = associate.name,
+            birthDate = associate.birthDate,
+            cpf = associate.cpf,
+            email = associate.email,
+            createdAt = associate.createdAt,
+            createdBy = associate.createdBy
+        )
+    }
+}
