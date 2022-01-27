@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository
 class AssociateDatabaseAdapter(private val associateJpa: AssociateJpa) : AssociateRepository{
     override fun save(associate: Associate): Long? {
         return try {
-            associateJpa.save(AssociateEntity.fromAssociate(associate)).id
+            associateJpa.save(AssociateEntity.fromDomain(associate)).id
         } catch (e: Exception) {
             null
         }

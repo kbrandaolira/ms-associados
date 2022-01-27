@@ -27,7 +27,9 @@ data class RegisterAssociateInHealthPlanDto(
             type = HealthPlanType.EMPRESARIAL,
             cnpj = "123",
             classification = HealthPlanClassification.APARTAMENTO,
-            dentalPlan = true
+            dentalPlan = true,
+            createdAt = LocalDateTime.now(),
+            createdBy = userId
         )
     }
 }

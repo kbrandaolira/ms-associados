@@ -25,7 +25,7 @@ class AssociateEntity (
     var updatedBy: Long? = null,
 ){
     companion object {
-        fun fromAssociate(associate: Associate) = AssociateEntity(
+        fun fromDomain(associate: Associate) = AssociateEntity(
            id = associate.id,
             name = associate.name,
             birthDate = associate.birthDate,

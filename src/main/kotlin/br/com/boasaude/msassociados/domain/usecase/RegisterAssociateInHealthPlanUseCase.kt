@@ -29,7 +29,7 @@ class RegisterAssociateInHealthPlanUseCase(
             return InvalidCNPJ
         }
 
-        this.associateRepository.save(associate) ?: return GenericError
+        this.associateRepository.save(associate)?.let { healthPlan.associateId = it } ?: return GenericError
         this.healthPlanRepository.save(healthPlan) ?: return GenericError
         return Success
     }
