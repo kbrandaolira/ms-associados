@@ -7,7 +7,7 @@ import br.com.boasaude.msassociados.infrastructure.jpa.HealthPlanJpa
 import org.springframework.stereotype.Repository
 
 @Repository
-class HealthPlanAdapter (private val healthPlanJpa: HealthPlanJpa) : HealthPlanRepository {
+class HealthPlanRepositoryAdapter (private val healthPlanJpa: HealthPlanJpa) : HealthPlanRepository {
     override fun save(healthPlan: HealthPlan): Long? {
         return try {
             healthPlanJpa.save(HealthPlanEntity.fromDomain(healthPlan)).id

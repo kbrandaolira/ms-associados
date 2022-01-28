@@ -4,11 +4,13 @@ import br.com.boasaude.msassociados.domain.model.Associate
 import br.com.boasaude.msassociados.domain.model.HealthPlan
 import br.com.boasaude.msassociados.domain.model.HealthPlanClassification
 import br.com.boasaude.msassociados.domain.model.HealthPlanType
+import com.fasterxml.jackson.annotation.JsonFormat
 import java.time.LocalDate
 import java.time.LocalDateTime
 
 data class RegisterAssociateInHealthPlanDto(
     val name: String,
+    @JsonFormat(pattern = "dd/MM/yyyy")
     val birthDate: LocalDate,
     val cpf: String,
     val email: String,

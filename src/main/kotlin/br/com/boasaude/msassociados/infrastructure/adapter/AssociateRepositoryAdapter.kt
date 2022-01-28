@@ -7,7 +7,7 @@ import br.com.boasaude.msassociados.infrastructure.jpa.AssociateJpa
 import org.springframework.stereotype.Repository
 
 @Repository
-class AssociateDatabaseAdapter(private val associateJpa: AssociateJpa) : AssociateRepository{
+class AssociateRepositoryAdapter(private val associateJpa: AssociateJpa) : AssociateRepository{
     override fun save(associate: Associate): Long? {
         return try {
             associateJpa.save(AssociateEntity.fromDomain(associate)).id
