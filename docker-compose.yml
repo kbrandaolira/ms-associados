@@ -1,6 +1,23 @@
 version: '3.6'
 services:
+  ms-associados:
+    networks:
+      - pucmg-network
+    container_name: ms-associados
+    build:
+      context: ./
+      dockerfile: Dockerfile.dev
+    image: "m4ucorp/ms-associados:dev"
+    restart: on-failure
+    ports:
+      - 8090:8090
+    depends_on:
+      - db-postgres-boasaude
+      - prometheus-boasaude
+      - grafana-boasaude
   db-postgres-boasaude:
+    networks:
+      - pucmg-network
     image: postgres:11.10-alpine
     container_name: db-postgres-boasaude
     restart: on-failure
@@ -21,6 +38,8 @@ services:
       - ./postgres:/docker-entrypoint-initdb.d:rw
 
   prometheus-boasaude:
+    networks:
+      - pucmg-network
     image: prom/prometheus
     container_name: prometheus-boasaude
     expose:
@@ -40,6 +59,8 @@ services:
       - '--web.listen-address=0.0.0.0:9191'
 
   grafana-boasaude:
+    networks:
+      - pucmg-network
     user: 'root'
     image: grafana/grafana:latest
     container_name: grafana-boasaude
@@ -51,3 +72,7 @@ services:
       - 3001:3000
     depends_on:
       - prometheus-boasaude
+
+networks:
+  pucmg-network:
+    driver: bridge

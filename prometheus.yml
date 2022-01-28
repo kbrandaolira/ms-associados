@@ -7,4 +7,4 @@ scrape_configs:
     scrape_interval: 5s # Override the global default and scrape targets from this job every 5 seconds.
     metrics_path: /actuator/prometheus
     static_configs:
-      - targets: ['localhost:8090']
+      - targets: ['ms-associados:8090']
