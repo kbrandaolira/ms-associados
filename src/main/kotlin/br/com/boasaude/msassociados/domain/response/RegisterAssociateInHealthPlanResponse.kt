@@ -1,4 +1,4 @@
-package br.com.boasaude.msassociados.domain.usecase
+package br.com.boasaude.msassociados.domain.response
 
 sealed class RegisterAssociateInHealthPlanResponse(val message: String) {
     object Success : RegisterAssociateInHealthPlanResponse("Associado salvo com sucesso.")

@@ -1,7 +1,7 @@
 package br.com.boasaude.msassociados.application.handler
 
 import br.com.boasaude.msassociados.application.dto.RegisterAssociateInHealthPlanDto
-import br.com.boasaude.msassociados.domain.usecase.RegisterAssociateInHealthPlanResponse.*
+import br.com.boasaude.msassociados.domain.response.RegisterAssociateInHealthPlanResponse.*
 import br.com.boasaude.msassociados.domain.usecase.RegisterAssociateInHealthPlanUseCase
 import org.springframework.http.HttpStatus.*
 import org.springframework.stereotype.Component
