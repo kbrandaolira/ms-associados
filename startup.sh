@@ -1,3 +1,4 @@
+rm -rf build
 ./gradlew --stacktrace --info clean build
 docker-compose build ms-associados
 docker-compose up -d
