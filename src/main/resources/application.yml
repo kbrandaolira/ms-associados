@@ -21,7 +21,7 @@ spring:
       poolName: pool
       schema: associados
     driverClassName: org.postgresql.Driver
-    url: jdbc:postgresql://db-postgres-boasaude:5432/postgres
+    url: jdbc:postgresql://localhost:5435/postgres #jdbc:postgresql://db-postgres-boasaude:5432/postgres
     username: postgres
     password: 123
 
@@ -36,7 +36,3 @@ management:
   metrics:
     tags.application: ${spring.application.name}
     export.prometheus.enabled: true
-
-networks:
-  default:
-    name: pucmg-network

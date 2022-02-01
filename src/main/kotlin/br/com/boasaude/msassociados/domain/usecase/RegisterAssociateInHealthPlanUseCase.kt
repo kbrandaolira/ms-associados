@@ -9,6 +9,7 @@ import br.com.boasaude.msassociados.domain.repository.HealthPlanRepository
 import br.com.boasaude.msassociados.domain.response.RegisterAssociateInHealthPlanResponse
 import br.com.boasaude.msassociados.domain.response.RegisterAssociateInHealthPlanResponse.*
 import org.springframework.stereotype.Service
+import java.time.LocalDate
 import javax.transaction.Transactional
 
 @Service
@@ -21,6 +22,9 @@ class RegisterAssociateInHealthPlanUseCase(
     fun execute(associate: Associate, healthPlan: HealthPlan): RegisterAssociateInHealthPlanResponse {
         if (associate.name.isEmpty()) {
             return InvalidName
+        }
+        if(associate.birthDate.isEqual(LocalDate.now())){
+            return InvalidBirthDate
         }
         if (associate.cpf.isEmpty()) {
             return InvalidCPF

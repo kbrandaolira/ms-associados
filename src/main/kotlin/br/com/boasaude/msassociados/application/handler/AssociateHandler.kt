@@ -12,7 +12,7 @@ class AssociateHandler(
     private val registerAssociateInHealthPlanUseCase: RegisterAssociateInHealthPlanUseCase
 ) {
 
-    fun registerAssociateInHealthPlan(registerAssociateInHealthPlanDto: RegisterAssociateInHealthPlanDto): ResponseEntity<Any> {
+    fun registerAssociateInHealthPlan(registerAssociateInHealthPlanDto: RegisterAssociateInHealthPlanDto): ResponseEntity<String> {
         val registerAssociateInHealthPlanResponse = this.registerAssociateInHealthPlanUseCase.execute(
             registerAssociateInHealthPlanDto.toAssociate(),
             registerAssociateInHealthPlanDto.toHealthPlan()
@@ -21,6 +21,7 @@ class AssociateHandler(
         return when (registerAssociateInHealthPlanResponse) {
             Success -> ResponseEntity(registerAssociateInHealthPlanResponse.message, CREATED)
             InvalidName -> ResponseEntity(registerAssociateInHealthPlanResponse.message, UNPROCESSABLE_ENTITY)
+            InvalidBirthDate -> ResponseEntity(registerAssociateInHealthPlanResponse.message, UNPROCESSABLE_ENTITY)
             InvalidCPF -> ResponseEntity(registerAssociateInHealthPlanResponse.message, UNPROCESSABLE_ENTITY)
             InvalidEmail -> ResponseEntity(registerAssociateInHealthPlanResponse.message, UNPROCESSABLE_ENTITY)
             InvalidCNPJ -> ResponseEntity(registerAssociateInHealthPlanResponse.message, UNPROCESSABLE_ENTITY)
