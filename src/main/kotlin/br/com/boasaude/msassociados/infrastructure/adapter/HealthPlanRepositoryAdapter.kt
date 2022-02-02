@@ -1,9 +1,7 @@
 package br.com.boasaude.msassociados.infrastructure.adapter
 
-import br.com.boasaude.msassociados.domain.model.Associate
 import br.com.boasaude.msassociados.domain.model.HealthPlan
 import br.com.boasaude.msassociados.domain.repository.HealthPlanRepository
-import br.com.boasaude.msassociados.infrastructure.entity.AssociateEntity
 import br.com.boasaude.msassociados.infrastructure.entity.HealthPlanEntity
 import br.com.boasaude.msassociados.infrastructure.jpa.HealthPlanJpa
 import org.springframework.stereotype.Repository
