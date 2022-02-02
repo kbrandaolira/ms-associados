@@ -35,4 +35,13 @@ class AssociateEntity (
             createdBy = associate.createdBy
         )
     }
+    fun toDomain() = Associate(
+        id = this.id,
+        name = this.name,
+        birthDate = this.birthDate,
+        cpf = this.cpf,
+        email = this.email,
+        createdAt = this.createdAt,
+        createdBy = this.createdBy
+    )
 }

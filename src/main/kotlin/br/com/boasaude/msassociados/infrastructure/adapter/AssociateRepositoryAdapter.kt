@@ -7,12 +7,20 @@ import br.com.boasaude.msassociados.infrastructure.jpa.AssociateJpa
 import org.springframework.stereotype.Repository
 
 @Repository
-class AssociateRepositoryAdapter(private val associateJpa: AssociateJpa) : AssociateRepository{
+class AssociateRepositoryAdapter(private val associateJpa: AssociateJpa) : AssociateRepository {
     override fun save(associate: Associate): Long? {
         return try {
-            associateJpa.save(AssociateEntity.fromDomain(associate)).id
+            this.associateJpa.save(AssociateEntity.fromDomain(associate)).id
         } catch (e: Exception) {
             null
         }
+    }
+
+    override fun findAllOrderByIdDesc(): List<Associate> {
+        var associates = mutableListOf<Associate>()
+        this.associateJpa.findAllByOrderByIdAsc().forEach {
+            associates.add(it.toDomain())
+        }
+        return associates;
     }
 }

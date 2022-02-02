@@ -4,4 +4,6 @@ import br.com.boasaude.msassociados.infrastructure.entity.AssociateEntity
 import org.springframework.data.jpa.repository.JpaRepository
 
 interface AssociateJpa : JpaRepository<AssociateEntity, Long> {
+
+    fun findAllByOrderByIdAsc(): List<AssociateEntity>
 }

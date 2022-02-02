@@ -9,29 +9,31 @@ import javax.persistence.*
 
 @Entity(name = "healthPlan")
 @Table(name = "health_plan", schema = "associados")
-class HealthPlanEntity (
+class HealthPlanEntity(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long? = null,
     @Enumerated(EnumType.STRING)
     val type: HealthPlanType,
-    val cnpj : String? = null,
+    val cnpj: String? = null,
     @Enumerated(EnumType.STRING)
     val classification: HealthPlanClassification,
-    val associateId : Long,
+    val dentalPlan: Boolean,
+    val associateId: Long,
     @Temporal(TemporalType.TIMESTAMP)
     var createdAt: LocalDateTime = LocalDateTime.now(),
     var createdBy: Long,
     @Temporal(TemporalType.TIMESTAMP)
     var updatedAt: LocalDateTime? = null,
     var updatedBy: Long? = null,
-){
+) {
     companion object {
         fun fromDomain(healthPlan: HealthPlan) = HealthPlanEntity(
             id = healthPlan.id,
             type = healthPlan.type,
             cnpj = healthPlan.cnpj,
             classification = healthPlan.classification,
+            dentalPlan = healthPlan.dentalPlan,
             associateId = healthPlan.associateId!!,
             createdAt = healthPlan.createdAt,
             createdBy = healthPlan.createdBy,
@@ -39,4 +41,17 @@ class HealthPlanEntity (
             updatedBy = healthPlan.updatedBy
         )
     }
+
+    fun toDomain() = HealthPlan(
+        id = this.id,
+        type = this.type,
+        cnpj = this.cnpj,
+        classification = this.classification,
+        dentalPlan = this.dentalPlan,
+        associateId = this.associateId,
+        createdAt = this.createdAt,
+        createdBy = this.createdBy,
+        updatedAt = this.updatedAt,
+        updatedBy = this.updatedBy
+    )
 }
