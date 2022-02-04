@@ -24,12 +24,12 @@ data class RegisterAssociateInHealthPlanDto(
 
     fun toHealthPlan(): HealthPlan {
         return HealthPlan(
-            type = HealthPlanType.EMPRESARIAL,
-            cnpj = "123",
-            classification = HealthPlanClassification.APARTAMENTO,
-            dentalPlan = true,
+            type = HealthPlanType.valueOf(this.typeOfHealthPlan),
+            cnpj = this.companyCnpj,
+            classification = HealthPlanClassification.valueOf(this.classificationOfHealthPlan),
+            dentalPlan = this.dentalPlan,
             createdAt = LocalDateTime.now(),
-            createdBy = userId
+            createdBy = this.userId
         )
     }
 }

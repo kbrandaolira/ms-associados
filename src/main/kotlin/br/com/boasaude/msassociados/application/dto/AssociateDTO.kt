@@ -1,11 +1,6 @@
 package br.com.boasaude.msassociados.application.dto
 
 import br.com.boasaude.msassociados.domain.model.Associate
-import br.com.boasaude.msassociados.domain.model.HealthPlan
-import br.com.boasaude.msassociados.domain.model.HealthPlanClassification
-import br.com.boasaude.msassociados.domain.model.HealthPlanType
-import br.com.boasaude.msassociados.infrastructure.toLocalDate
-import java.time.LocalDateTime
 
 data class AssociateDTO(
     val id: Long?,
