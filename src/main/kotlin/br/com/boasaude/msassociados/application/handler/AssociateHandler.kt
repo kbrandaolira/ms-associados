@@ -17,6 +17,10 @@ class AssociateHandler(
     private val healthPlanRepository: HealthPlanRepository,
 ) {
 
+    fun findAssociateIdByDocumentNumber(documentNumber: String): Long?{
+        return this.associateRepository.findIdByCpf(documentNumber)
+    }
+
     fun search(): List<AssociateDTO> {
         val dtos = mutableListOf<AssociateDTO>()
         this.associateRepository.findAllOrderByIdDesc().forEach { associate ->

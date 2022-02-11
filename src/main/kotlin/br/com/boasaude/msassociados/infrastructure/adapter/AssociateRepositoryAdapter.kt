@@ -23,4 +23,8 @@ class AssociateRepositoryAdapter(private val associateJpa: AssociateJpa) : Assoc
         }
         return associates;
     }
+
+    override fun findIdByCpf(cpf: String): Long? {
+        return this.associateJpa.findIdByCpf(cpf)
+    }
 }
