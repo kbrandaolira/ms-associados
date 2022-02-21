@@ -26,7 +26,7 @@ class AssociateController(private val associateHandler: AssociateHandler) {
         return this.associateHandler.search()
     }
 
-    @GetMapping("/associate/{documentNumber}")
+    @GetMapping("/{documentNumber}")
     fun findAssociateIdByDocumentNumber(@PathVariable documentNumber: String): Long? {
         logger.info("Finding associate id by document number $documentNumber.")
         return this.associateHandler.findAssociateIdByDocumentNumber(documentNumber)
